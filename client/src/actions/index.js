@@ -33,14 +33,13 @@ export function errorHandler(dispatch, error, type) {
    // NOT AUTHENTICATED ERROR
   if (error.status === 401 || error.response.status === 401) {
     errorMessage = 'You are not authorized to do this.';
-    logoutUser();
+    return dispatch(logoutUser(errorMessage));
   }
 
   dispatch({
     type,
     payload: errorMessage,
   });
-  // logoutUser();
 }
 
 // Post Request
